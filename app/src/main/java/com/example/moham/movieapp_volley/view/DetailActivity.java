@@ -1,18 +1,12 @@
-package com.example.moham.movieapp_volley;
+package com.example.moham.movieapp_volley.view;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.InflateException;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.moham.movieapp_volley.R;
+import com.example.moham.movieapp_volley.view.DetailFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -20,7 +14,12 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        try {
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }catch (NullPointerException e){
+            Toast.makeText(this, "home button exception", Toast.LENGTH_SHORT).show();
+        }
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container2, new DetailFragment()).commit();
 
