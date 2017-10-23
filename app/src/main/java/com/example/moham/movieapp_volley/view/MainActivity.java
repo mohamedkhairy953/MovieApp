@@ -1,18 +1,10 @@
-package com.example.moham.movieapp_volley;
+package com.example.moham.movieapp_volley.view;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.AttributeSet;
-import android.view.InflateException;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.widget.TextView;
+
+import com.example.moham.movieapp_volley.R;
+import com.example.moham.movieapp_volley.Utitlity;
 
 public class MainActivity extends AppCompatActivity {
 

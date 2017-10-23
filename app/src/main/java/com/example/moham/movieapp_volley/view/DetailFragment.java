@@ -1,6 +1,5 @@
-package com.example.moham.movieapp_volley;
+package com.example.moham.movieapp_volley.view;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -25,10 +24,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.moham.movieapp_volley.DBController;
+import com.example.moham.movieapp_volley.R;
+import com.example.moham.movieapp_volley.Utitlity;
+import com.example.moham.movieapp_volley.model.Movie_ModelResults;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class DetailFragment extends Fragment {
     ArrayList<Review_Model> reviews_list;
     private ListView listView_reviews;
     ArrayAdapter arrayAdapter_trailers, arrayAdapter_reviews;
-    Movie_model movieIntent;
+    Movie_ModelResults movieIntent;
 
     public DetailFragment() {
 
@@ -56,40 +58,40 @@ public class DetailFragment extends Fragment {
         final Intent intent = getActivity().getIntent();
         if (getArguments() != null || intent.getSerializableExtra("movie")!=null) {
             if (Utitlity.mTwoPane) {
-                movieIntent = (Movie_model) getArguments().getSerializable("movie");
+                movieIntent = (Movie_ModelResults) getArguments().getSerializable("movie");
             } else {
-                movieIntent = (Movie_model) intent.getSerializableExtra("movie");
+                movieIntent = (Movie_ModelResults) intent.getSerializableExtra("movie");
             }
             View view = inflater.inflate(R.layout.detail_fragment, container, false);
             // Load Title text
             getActivity().setTitle(movieIntent.getTitle());
             // Load image in Image View
-            ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
+            ImageView detailImage =  view.findViewById(R.id.detail_image);
             Picasso.with(getActivity()).load("https://image.tmdb.org/t/p/w185" + movieIntent.getPoster_path())
                     .placeholder(R.drawable.poster_place_holder)
                     .into(detailImage);
 
             // Load Release Date
-            TextView releaseDateText = (TextView) view.findViewById(R.id.detail_release_date);
+            TextView releaseDateText =  view.findViewById(R.id.detail_release_date);
             releaseDateText.setText(movieIntent.getRelease_date());
 
             // Load Popularity
-            TextView popularityText = (TextView) view.findViewById(R.id.detail_popularity);
+            TextView popularityText =  view.findViewById(R.id.detail_popularity);
             popularityText.setText("Popularity: " + movieIntent.getPopularity());
 
             //Load Overview
-            TextView overviewText = (TextView) view.findViewById(R.id.detail_overview);
+            TextView overviewText =  view.findViewById(R.id.detail_overview);
             overviewText.setText(movieIntent.getOverview());
 
             // Load Average
-            TextView voteAverageText = (TextView) view.findViewById(R.id.detail_vote_average);
+            TextView voteAverageText =  view.findViewById(R.id.detail_vote_average);
             voteAverageText.setText("Voter Average: " + movieIntent.getVote_average());
 
             // Load Vote Count
-            TextView voteCountText = (TextView) view.findViewById(R.id.detail_vote_count);
+            TextView voteCountText =  view.findViewById(R.id.detail_vote_count);
             voteCountText.setText("Voter Count: " + movieIntent.getVote_count());
 
-            final Button add_to_fav_btn = (Button) view.findViewById(R.id.add_fav_button_id);
+            final Button add_to_fav_btn =  view.findViewById(R.id.add_fav_button_id);
 
             if (dbController.is_In_MyFav(movieIntent.getId())) {
                 add_to_fav_btn.setEnabled(false);

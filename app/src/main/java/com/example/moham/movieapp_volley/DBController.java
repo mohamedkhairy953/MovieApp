@@ -5,14 +5,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.moham.movieapp_volley.model.Movie_Model;
+import com.example.moham.movieapp_volley.model.Movie_ModelResults;
+import com.example.moham.movieapp_volley.presenter.LoadInterfaceListener;
+
 import java.util.ArrayList;
 
 /**
  * Created by moham on 8/29/2016.
  */
 public class DBController {
-    DbHelper helper;
-    SQLiteDatabase db;
+    private DbHelper helper;
+    private SQLiteDatabase db;
 
     public DBController(Context context) {
         this.helper = new DbHelper(context);
@@ -22,7 +26,7 @@ public class DBController {
         db = helper.getWritableDatabase();
     }
 
-    public long insert_movie(Movie_model model) {
+    public long insert_movie(Movie_ModelResults model) {
         open();
         ContentValues values = new ContentValues();
         values.put(DatabaseContract.MovieTable._ID, model.getId());
@@ -40,9 +44,9 @@ public class DBController {
         return insert;
     }
 
-    public ArrayList<Movie_model> get_all_fav_movies() {
+    public void get_all_fav_movies(LoadInterfaceListener listener) {
         open();
-        ArrayList<Movie_model> movies_arraylist = new ArrayList<>();
+        ArrayList<Movie_ModelResults> movies_arraylist = new ArrayList<>();
         Cursor query = db.query(DatabaseContract.MovieTable.TABLE,
                 null,
                 null,
@@ -53,7 +57,7 @@ public class DBController {
         );
         if (query.moveToFirst()) {
             do {
-                Movie_model model = new Movie_model();
+                Movie_ModelResults model = new Movie_ModelResults();
                 model.setBackdrop_path(query.getString(query.getColumnIndex(DatabaseContract.MovieTable.col_backDropPath)));
                 model.setOriginal_title(query.getString(query.getColumnIndex(DatabaseContract.MovieTable.col_OriginalTitle)));
                 model.setOverview(query.getString(query.getColumnIndex(DatabaseContract.MovieTable.col_overview)));
@@ -67,15 +71,24 @@ public class DBController {
                 movies_arraylist.add(model);
             } while (query.moveToNext());
         }
-        return movies_arraylist;
+        query.close();
+        if (movies_arraylist.isEmpty()) {
+            listener.error("There Are NO Favourite Movies");
+            return;
+        }
+        listener.loadedSuccessfully(movies_arraylist);
+
+
     }
 
     public boolean is_In_MyFav(int id) {
         open();
         Cursor query = db.query(DatabaseContract.MovieTable.TABLE, null, DatabaseContract.MovieTable._ID + "= ?", new String[]{String.valueOf(id)}, null, null, null);
         if (query.moveToFirst()) {
+            query.close();
             return true;
         }
+        query.close();
         return false;
     }
 }
