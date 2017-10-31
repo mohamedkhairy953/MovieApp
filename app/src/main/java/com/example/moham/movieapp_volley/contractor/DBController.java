@@ -1,13 +1,12 @@
-package com.example.moham.movieapp_volley;
+package com.example.moham.movieapp_volley.contractor;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.moham.movieapp_volley.model.Movie_Model;
 import com.example.moham.movieapp_volley.model.Movie_ModelResults;
-import com.example.moham.movieapp_volley.presenter.LoadInterfaceListener;
+import com.example.moham.movieapp_volley.presenter.movies_presenter.LoadInterfaceListener;
 
 import java.util.ArrayList;
 

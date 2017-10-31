@@ -1,4 +1,4 @@
-package com.example.moham.movieapp_volley.view;
+package com.example.moham.movieapp_volley.view.detail_view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.moham.movieapp_volley.R;
-import com.example.moham.movieapp_volley.view.DetailFragment;
 
 public class DetailActivity extends AppCompatActivity {
 

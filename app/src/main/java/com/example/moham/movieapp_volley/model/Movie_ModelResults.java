@@ -2,7 +2,7 @@ package com.example.moham.movieapp_volley.model;
 
 import java.io.Serializable;
 
-public class Movie_ModelResults implements Serializable {
+public class Movie_ModelResults implements Serializable{
     private String overview;
     private String original_language;
     private String original_title;
