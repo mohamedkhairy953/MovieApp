@@ -1,13 +1,13 @@
-package com.example.moham.movieapp_volley.presenter;
+package com.example.moham.movieapp_volley.presenter.movies_presenter;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.moham.movieapp_volley.DBController;
-import com.example.moham.movieapp_volley.NetworkClass;
-import com.example.moham.movieapp_volley.Utitlity;
+import com.example.moham.movieapp_volley.contractor.DBController;
+import com.example.moham.movieapp_volley.contractor.NetworkClass;
+import com.example.moham.movieapp_volley.contractor.SharedPref;
 import com.example.moham.movieapp_volley.model.Movie_ModelResults;
-import com.example.moham.movieapp_volley.view.MoviesView;
+import com.example.moham.movieapp_volley.view.main_activity.MoviesView;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,7 @@ public class MoviesPresenterImpl implements MoviesPresenter {
     @Override
     public void fetchMovies(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            switch (Utitlity.listName) {
+            switch (SharedPref.listName) {
                 case FAVOURITE_LIST_NAME:
                     view.loadFavMovies(favList);
                     break;
@@ -144,7 +144,16 @@ public class MoviesPresenterImpl implements MoviesPresenter {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(PREF_KEY_INT, listName);
         editor.apply();
-        Utitlity.listName = listName;
+        SharedPref.listName = listName;
+    }
+
+    @Override
+    public void doOnGridItemClicked(Movie_ModelResults movie) {
+        if (SharedPref.mTwoPane){
+            view.loadDetailsOnFragment(movie);
+        }else {
+            view.navigateToDtailsActivity(movie);
+        }
     }
 
 

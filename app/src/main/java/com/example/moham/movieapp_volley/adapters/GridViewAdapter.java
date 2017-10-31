@@ -1,4 +1,4 @@
-package com.example.moham.movieapp_volley;
+package com.example.moham.movieapp_volley.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.moham.movieapp_volley.R;
 import com.example.moham.movieapp_volley.model.Movie_ModelResults;
 import com.squareup.picasso.Picasso;
 

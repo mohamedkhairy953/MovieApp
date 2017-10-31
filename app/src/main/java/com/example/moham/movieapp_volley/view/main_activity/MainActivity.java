@@ -1,10 +1,11 @@
-package com.example.moham.movieapp_volley.view;
+package com.example.moham.movieapp_volley.view.main_activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.moham.movieapp_volley.R;
-import com.example.moham.movieapp_volley.Utitlity;
+import com.example.moham.movieapp_volley.contractor.SharedPref;
+import com.example.moham.movieapp_volley.view.detail_view.DetailFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,13 +16,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (findViewById(R.id.container2) != null) {
-            Utitlity.mTwoPane = true;
+            SharedPref.mTwoPane = true;
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.container2, new DetailFragment()).commit();
             }
         } else {
-           Utitlity.mTwoPane = false;
+           SharedPref.mTwoPane = false;
         }
 
     }

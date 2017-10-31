@@ -1,9 +1,11 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<ScrollView
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#252626"
-    tools:context="com.example.moham.movieapp_volley.view.DetailActivity">
+    tools:context="com.example.moham.movieapp_volley.view.detail_view.DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +39,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:gravity="start"
-                    android:text="2016"
                     android:textColor="@color/colorwhite"
                     android:textSize="15sp" />
 
@@ -48,7 +49,6 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="start"
                     android:textColor="@color/colorwhite"
-                    android:text="popularity  70.3"
                     android:textSize="15sp" />
 
                 <TextView
@@ -56,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+
                     android:textColor="@color/colorwhite"
                     android:textSize="15sp" />
 
@@ -64,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorwhite"
+
                     android:textSize="15sp" />
                 <Button
                     android:layout_marginTop="70dp"
@@ -93,7 +95,6 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/colorwhite"
-            android:text="Minions Stuart, Kevin and Bob are recruited by Scarlet Overkill, a super-villain who, alongside her inventor husband Herb, hatches a plot to take over the world."
             android:textSize="15sp" />
 
         <LinearLayout
@@ -110,10 +111,10 @@
                 android:textColor="@color/colorTextHeads"
                 android:textSize="30sp" />
 
-            <ListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/trailers_list_id"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp"
                 />
 
@@ -133,13 +134,14 @@
                 android:textColor="@color/colorTextHeads"
                 android:textSize="30sp" />
 
-            <ListView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/reviews_list_id"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:padding="10dp" />
 
         </LinearLayout>
 
     </LinearLayout>
 </ScrollView>
+</layout>
